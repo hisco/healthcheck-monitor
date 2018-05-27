@@ -19,7 +19,7 @@ describe('HealthCheckMonitor' , ()=>{
             if (isActionTimeout )
                 cb; 
             else if(triggeredTest){
-                if (i++ < 3)
+                if (i++ < 4)
                     cb();
             }
             else if(triggeredTest)
@@ -58,7 +58,11 @@ describe('HealthCheckMonitor' , ()=>{
             let statusAtChange;
             let transitionStatusAtChange;
             let error;
+            let isStatusChangeRun = false;
+            let isStatusOnStartRun = false;
+          
             healthCheckMonitor.on('statusChange' , (testStatus)=>{
+                isStatusChangeRun=true;
                 statusAtStartUp = healthCheckMonitor.status;
                 transitionStatusAtStartUp = healthCheckMonitor.transitionStatus;
             
@@ -68,10 +72,11 @@ describe('HealthCheckMonitor' , ()=>{
                 transitionStatusAtChange = healthCheckMonitor.transitionStatus;
             });
             healthCheckMonitor.start(()=>{
+                isStatusOnStartRun = true;
                 try {
-                    //It's already a in try/catch
+                    // It's already a in try/catch
                     //Because everything is sync it will be easy to throw if needed
-                    expect(i).eq( 2 /*2 failures */ + 1 /* First success */+ 4 /*4 healthy after*/)
+                    expect(i).eq( 3 /*2 failures */ + 1 /* First success */+ 4 /*4 healthy after*/)
                     expect(statusAtStartUp).eq('HEALTHY')
                     expect(transitionStatusAtStartUp).eq('HEALTHY');
                     //When I did pause it reset the status...
@@ -83,6 +88,8 @@ describe('HealthCheckMonitor' , ()=>{
                 }
                 
             });
+            if ((!isStatusChangeRun || !isStatusOnStartRun))
+                throw new Error('Test not run')
             if (error)
                 throw error;
         })

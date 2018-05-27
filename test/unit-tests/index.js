@@ -741,7 +741,7 @@ describe('HealthCheckMonitor' , ()=>{
         let _analyzeStatus;
         let testResult = {};
         beforeEach(()=>{
-            test = chai.spy((reason , cb)=>{cb(testResult)});
+            test = chai.spy();
             _analyzeStatus = chai.spy();
             mockView = mockFactory
             .test(['_triggeredTest' ]).create();
@@ -755,13 +755,6 @@ describe('HealthCheckMonitor' , ()=>{
             healthCheckMonitor._triggeredTest();
 
             expect(healthCheckMonitor.test).to.have.been.called.with('interval' )
-        });
-        it('Should call #_analyzeStatus' , ()=>{
-            const healthCheckMonitor  = mockView.instance;
-            
-            healthCheckMonitor._triggeredTest();
-
-            expect(healthCheckMonitor._analyzeStatus).to.have.been.called.with(testResult);
         });
     });
     describe('#_test' , ()=>{

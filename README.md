@@ -4,16 +4,16 @@
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-    Healthcheck anything, with this core functionality of monitoring healthcheck.
+Core functionality of monitoring healthcheck.
 
 ## Features
   * Retries for failled check
-  * Timout monitoring
+  * Timeout monitoring
   * Healthy after X checks
   * Unhealthy after Y checks
   * Pause between failled checks
   * Everything is super configurable - with resolved functions as options
-  * Fully unit testes
+  * Fully unit tested
   * TypeScript support
 
 

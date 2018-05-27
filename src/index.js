@@ -70,10 +70,12 @@ class HealthCheckMonitor{
         this.status = this.STATUS.STARTING;
         this.transitionStatus = this.STATUS.STARTING;
         this.isChanging = true;
+        const statusMonitor  = this;
 
         this.Utils.setTimeout(()=>{
             this.test( 'init' ,  function startCb(testResult){
                 try{
+                    statusMonitor
                     if (onStart)
                         onStart(testResult);
                 }
@@ -127,11 +129,12 @@ class HealthCheckMonitor{
                 } , Utils.safeGetUserNumber(this.testOptions.interval , this.DEFAULT_INTERVAL) );
 
             this._analyzeStatus(result);
-            onResult(result);
+            if (onResult)
+                onResult(result);
         });
     }
     _analyzeStatus(testResult){
-        const {status , transitionStatus , testOptions} = this;
+        const { status , transitionStatus , testOptions} = this;
         const testStatus = testResult.status;
 
         if (status == transitionStatus && transitionStatus == testStatus){
@@ -168,9 +171,7 @@ class HealthCheckMonitor{
         this.emit('testResult' , testResult);
     }
     _triggeredTest(){
-        this.test('interval' , (testResult)=>{
-            this._analyzeStatus(testResult);
-        });
+        this.test('interval' );
     }
     _test(testRunInfo , onResult){
         const testOptions = this.testOptions;
