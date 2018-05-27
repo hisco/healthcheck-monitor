@@ -1,0 +1,38 @@
+{
+  "name": "healthcheck-monitor",
+  "version": "1.0.0",
+  "description": "Health check anything, with this core functionality of monitoring health checks",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "test": "mocha --recursive --reporter spec",
+    "watch-test": "mocha --recursive --watch --reporter spec",
+    "test-ci": "istanbul cover ./node_modules/mocha/bin/_mocha test/**/*.js --report lcovonly -- -R spec && cat ./coverage/lcov.info"
+  },
+  "devDependencies": {
+    "mocha": "^5.1.1",
+    "chai": "^4.1.2",
+    "chai-spies": "^1.0.0",
+    "istanbul": "0.4.5",
+    "unit-test-class": "1.0.5"
+  },
+  "keywords": [
+    "healthcheck",
+    "health check",
+    "monitor",
+    "status",
+    "status monitor",
+    "status check",
+    "check"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hisco/healthcheck-monitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hisco/healthcheck-monitor/issues"
+  },
+  "homepage": "https://github.com/hisco",
+  "author": "Eyald <hisco@googlegroups.com‬>",
+  "license": "MIT"
+}
