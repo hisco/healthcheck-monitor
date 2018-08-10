@@ -47,11 +47,11 @@ declare module HealthcheckMonitor{
         action : HealthcheckAction
     }
     export class HealthcheckMonitor{
-		static getTestOptions(options : HealthcheckMonitorOptions);
+		getTestOptions(options : HealthcheckMonitorOptions);
 		constructor(options : HealthcheckMonitorOptions);
 		start<T>(onStart? : HealthcheckOnTestResult<T>):void;
         pause():void;
-        resume(onResume : ()=>void):void;
+        resume(onResume? : ()=>void):void;
         test<T>(reason : string , onResult : HealthcheckOnTestResult<T>):void;
         on(eventName : string , cb:()=>void ):void;
         emit(eventName : string , value:any):void;
@@ -60,3 +60,4 @@ declare module HealthcheckMonitor{
     }
 
 }
+export = HealthcheckMonitor;
