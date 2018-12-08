@@ -1,6 +1,6 @@
 {
   "name": "healthcheck-monitor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Health check anything, with this core functionality of monitoring health checks",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -14,7 +14,7 @@
     "chai": "^4.1.2",
     "chai-spies": "^1.0.0",
     "istanbul": "0.4.5",
-    "unit-test-class": "1.0.5"
+    "unit-test-class": "1.0.6"
   },
   "keywords": [
     "healthcheck",
